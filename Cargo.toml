@@ -1,10 +1,18 @@
 [package]
-name = "zeus"
+name = "monal-zeus"
 version = "1.0.0"
-authors = ["EmperDeon <emperdeon@protonmail.com>"]
+authors = ["Monal <admin@monal.tech>", "EmperDeon <emperdeon@protonmail.com>"]
 edition = "2018"
+description = "Utility application for setting up and deploying services"
+homepage  = "https://github.com/EmperDeon/zeus"
+repository = "https://github.com/EmperDeon/zeus"
+documentation = "https://github.com/EmperDeon/zeus"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license = "MIT"
+categories = ["command-line-utilities", "development-tools"]
+
+[profile.release]
+lto = true
 
 [dependencies]
 clap = "3.0.0-beta.2"

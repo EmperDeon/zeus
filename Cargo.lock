@@ -282,6 +282,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 
 [[package]]
+name = "monal-zeus"
+version = "1.0.0"
+dependencies = [
+ "chrono",
+ "clap",
+ "dirs",
+ "git2",
+ "log 0.4.14",
+ "mustache",
+ "path-absolutize",
+ "serde",
+ "serde_derive",
+ "serde_yaml",
+ "simplelog",
+ "text_io",
+]
+
+[[package]]
 name = "mustache"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -649,22 +667,4 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56c1936c4cc7a1c9ab21a1ebb602eb942ba868cbd44a99cb7cdc5892335e1c85"
 dependencies = [
  "linked-hash-map",
-]
-
-[[package]]
-name = "zeus"
-version = "1.0.0"
-dependencies = [
- "chrono",
- "clap",
- "dirs",
- "git2",
- "log 0.4.14",
- "mustache",
- "path-absolutize",
- "serde",
- "serde_derive",
- "serde_yaml",
- "simplelog",
- "text_io",
 ]
