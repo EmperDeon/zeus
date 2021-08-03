@@ -9,6 +9,10 @@ pub struct Opts {
   /// Branch to checkout
   #[clap(short, long, default_value = "test")]
   pub(crate) environment: String,
+
+  /// Cleanup after deploy
+  #[clap(long)]
+  cleanup: bool,
 }
 
 pub fn call(opts: crate::GlobalOpts, sub_opts: Opts) -> Result<i32, String> {
@@ -36,16 +40,31 @@ fn deploy(config: &Config, name: &str, sub_opts: &Opts) -> Result<(), String> {
     return Ok(());
   }
 
-  std::process::Command::new("werf")
+  let exit_code = std::process::Command::new("werf")
     .arg("converge")
     .arg("--env")
     .arg(&sub_opts.environment)
     .arg("--repo")
     .arg(format!("{}/{}", &config.werf.repository, name))
-    .current_dir(service_path)
+    .current_dir(&service_path)
     .spawn().expect("werf converge failed")
     .wait().unwrap();
-
   println!();
+
+  if !exit_code.success() { return Err("werf converge failed".to_owned()); }
+
+  let exit_code = std::process::Command::new("werf")
+    .arg("cleanup")
+    .arg("--env")
+    .arg(&sub_opts.environment)
+    .arg("--repo")
+    .arg(format!("{}/{}", &config.werf.repository, name))
+    .current_dir(service_path)
+    .spawn().expect("werf cleanup failed")
+    .wait().unwrap();
+  println!();
+
+  if !exit_code.success() { return Err("werf cleanup failed".to_owned()); }
+
   Ok(())
 }

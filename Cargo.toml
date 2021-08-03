@@ -1,6 +1,6 @@
 [package]
 name = "monal-zeus"
-version = "1.0.1"
+version = "1.1.0"
 authors = ["Monal <admin@monal.tech>", "EmperDeon <emperdeon@protonmail.com>"]
 edition = "2018"
 description = "Utility application for setting up and deploying services"
